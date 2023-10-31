@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ifstream fin("castel.in");
+    ofstream fout("castel.out");
+    
+    long long n, m, fv[10], x[1001], y[1001], k = 0, ma = 0, uc, i, j;
+    
+    fin >> n;
+    
+    for(i = 1; i <= n; i++)
+    {
+        fin >> x[i];
+    }
+    
+    fin >> m;
+    
+    for(j = 1; j <= m; j++)
+    {
+        fin >> y[j];
+    }
+    
+    for(i = 1; i <= n; i++)
+    {
+        for(j = 1; j <= m; j ++)
+        {
+            int copiex = x[i];
+            
+            while(x[i] > 0)
+            {
+                uc = x[i] % 10;
+                
+                if(uc == y[j])
+                {
+                    fv[y[j]] ++;
+                }
+                
+                x[i] /= 10;
+            }
+            
+            x[i] = copiex;
+        }
+    }
+    
+    for(i = 1; i <= m; i ++)
+    {
+        if(fv[y[i]] > ma)
+        {
+            ma = fv[y[i]];
+            k = y[i];
+        }
+    }
+    
+    fout << k << " " << ma;
+
+    return 0;
+}
